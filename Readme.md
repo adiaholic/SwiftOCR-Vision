@@ -33,3 +33,9 @@ Once the executable is generated, it can be run from the terminal or command pro
 ```./<executable_name> <image_path> <box_data_text_file_path>```
 
 Replace <executable_name> with the actual name of the generated executable file, <image_path> with the path to the input image, and <box_data_text_file_path> with the absolute path for the output box data in the appropriate format.
+
+To make the generated executable file executable, you would need to run the following command in the terminal or command prompt:
+
+```chmod +x <executable_name>```
+
+Replace <executable_name> with the actual name of the generated executable file. This command grants the execute permission to the specified file, allowing it to be run as an executable.
