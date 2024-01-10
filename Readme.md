@@ -29,3 +29,5 @@ swiftc -o <executable_name> main.swift
 
 ## Running the Executable
 Once the executable is generated, it can be run from the terminal or command prompt using the following command:
+
+```./<executable_name> <image_path>```
