@@ -5,9 +5,9 @@ import CoreGraphics
 // Access command line arguments
 let arguments = CommandLine.arguments
 
-// Skip the first argument, which is the path to the executable
-guard arguments.count > 1, let imagePath = arguments.dropFirst().first else {
-    print("Please provide the path to the image as an argument.")
+// Ensure the correct number of arguments is provided
+guard arguments.count == 3, let imagePath = arguments.dropFirst().first, let boxDataPath = arguments.dropFirst(2).first else {
+    print("Usage: ./<executable> <image_path> <box_data_text_file_path>")
     exit(0)
 }
 
@@ -49,7 +49,7 @@ let request = VNRecognizeTextRequest { request, error in
     }
     
     // Write bounding box data to file
-    let boxDataFileURL = URL(fileURLWithPath: "box_data.txt")
+    let boxDataFileURL = URL(fileURLWithPath: boxDataPath)
     do {
         let jsonData = try JSONSerialization.data(withJSONObject: boundingBoxData, options: .prettyPrinted)
         try jsonData.write(to: boxDataFileURL, options: .atomic)
@@ -57,7 +57,6 @@ let request = VNRecognizeTextRequest { request, error in
         print("Failed to write bounding box data to file: \(error.localizedDescription)")
     }
 }
-
 
 let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
 do {
